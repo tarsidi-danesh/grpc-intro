@@ -1,0 +1,16 @@
+name: ProtoWorkflow
+on: [push]
+
+jobs:
+  protoJobs:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: test
+        run: |
+          echo test
+      - name: send dispatch
+        uses: tarsidi-danesh/repository-dispatch@v1
+        with:
+          token: ${{ secrets.PAT }}
+          repository: tarsidi-danesh/grpc-intro-java
+          event-type: GrpcProtoEvent
