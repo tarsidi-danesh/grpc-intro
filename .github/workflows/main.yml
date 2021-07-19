@@ -9,7 +9,7 @@ jobs:
         run: |
           echo test
       - name: send dispatch
-        uses: tarsidi-danesh/repository-dispatch@v1
+        uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.PAT }}
           repository: tarsidi-danesh/grpc-intro-java
