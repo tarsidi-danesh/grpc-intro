@@ -3,14 +3,14 @@ on: [push]
 
 jobs:
   protoJobs:
+    strategy:
+      matrix:
+        repo: ['tarsidi-danesh/grpc-intro-java', 'tarsidi-danesh/grpc-intro-go']
     runs-on: [ubuntu-latest]
     steps:
-      - name: test
-        run: |
-          echo test
-      - name: send dispatch
+      - name: Send Dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          repository: tarsidi-danesh/grpc-intro-java
+          repository: ${{ matrix.repo }}
           event-type: GrpcProtoEvent
