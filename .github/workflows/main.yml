@@ -13,5 +13,5 @@ jobs:
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ${{ matrix.repo }}
-          event-type: GrpcProtoEvent
+          event-type: ProtoFileChanges
           client-payload: '{ "message": "${{ github.event.head_commit.message }}" }'
