@@ -11,6 +11,6 @@ jobs:
       - name: send dispatch
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: tarsidi-danesh/grpc-intro-java
           event-type: GrpcProtoEvent
