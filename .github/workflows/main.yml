@@ -12,10 +12,10 @@ jobs:
         uses: adrianjost/files-sync-action@v1.0.1
         with:
           FILE_PATTERNS: |
-            ^.github/workflows/.*
+            ^proto/.*
           TARGET_REPOS: |
-            tarsidi-danesh/grpc-intro-java:main
-            tarsidi-danesh/grpc-intro-go:main
+            tarsidi-danesh/grpc-intro-java
+            tarsidi-danesh/grpc-intro-go
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
       - name: Send Dispatch
         uses: peter-evans/repository-dispatch@v1
