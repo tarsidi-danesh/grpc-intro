@@ -5,7 +5,7 @@ jobs:
   protoJobs:
     strategy:
       matrix:
-        repo: ['tarsidi-danesh/grpc-intro-go']
+        repo: ['tarsidi-danesh/grpc-intro-java','tarsidi-danesh/grpc-intro-go']
     runs-on: [ubuntu-latest]
     steps:
       - name: SyncProto
