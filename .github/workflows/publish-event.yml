@@ -1,0 +1,19 @@
+name: PublishEvent
+on:
+  repository_dispatch:
+    types: [proto-synced]
+
+jobs:
+  publishEventJobs:
+    strategy:
+      matrix:
+        repo: ['tarsidi-danesh/grpc-intro-java','tarsidi-danesh/grpc-intro-go']
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Create Event
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: ${{ matrix.repo }}
+          event-type: ProtoFileChanges
+          client-payload: '{ "message": "${{ github.event.head_commit.message }}", "version": "${{ github.event.client_payload.version }}" }'

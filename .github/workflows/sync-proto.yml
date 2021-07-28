@@ -1,14 +1,11 @@
-name: ProtoWorkflow
+name: SyncProto
 on: [push]
 
 jobs:
   protoJobs:
-    strategy:
-      matrix:
-        repo: ['tarsidi-danesh/grpc-intro-java','tarsidi-danesh/grpc-intro-go']
     runs-on: [ubuntu-latest]
     steps:
-      - name: SyncProto
+      - name: Sync Proto Files
         uses: adrianjost/files-sync-action@v1.0.1
         with:
           FILE_PATTERNS: |
@@ -22,10 +19,9 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.5
         with:
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
-      - name: Send Dispatch
+      - name: Create Event
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          repository: ${{ matrix.repo }}
-          event-type: ProtoFileChanges
-          client-payload: '{ "message": "${{ github.event.head_commit.message }}", "version": "${{ steps.tag_version.outputs.new_tag }}" }'
+          event-type: proto-synced
+          client-payload: '{ "version": "${{ steps.tag_version.outputs.new_tag }}" }'
