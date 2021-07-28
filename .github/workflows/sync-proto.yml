@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  protoJobs:
+  syncProtoJobs:
     runs-on: [ubuntu-latest]
     steps:
       - name: Sync Proto Files
