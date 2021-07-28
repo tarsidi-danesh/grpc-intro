@@ -19,9 +19,16 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.5
         with:
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+      - name: Replace Version Prefix
+        id: replace-prefix
+        uses: frabert/replace-string-action@v2.0
+        with:
+          pattern: 'v'
+          string: ${{ steps.tag_version.outputs.new_tag }}
+          replace-with: ''
       - name: Create Event
         uses: peter-evans/repository-dispatch@v1
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           event-type: proto-synced
-          client-payload: '{ "version": "${{ steps.tag_version.outputs.new_tag }}" }'
+          client-payload: '{ "message": "${{ github.event.head_commit.message }}", "version": "${{ steps.replace-prefix.outputs.replaced }}" }'

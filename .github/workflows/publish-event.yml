@@ -16,4 +16,4 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           repository: ${{ matrix.repo }}
           event-type: ProtoFileChanges
-          client-payload: '{ "message": "${{ github.event.head_commit.message }}", "version": "${{ github.event.client_payload.version }}" }'
+          client-payload: '{ "message": "${{ github.event.client_payload.message }}", "version": "${{ github.event.client_payload.version }}" }'
