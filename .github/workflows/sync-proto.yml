@@ -1,5 +1,8 @@
 name: SyncProto
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
   protoJobs:
