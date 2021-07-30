@@ -22,6 +22,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v5.5
         with:
           github_token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          default_bump: minor
       - name: Replace Version Prefix
         id: replace-prefix
         uses: frabert/replace-string-action@v2.0
